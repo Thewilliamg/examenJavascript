@@ -1,48 +1,32 @@
-export const getPantalones = async() =>{
-    const url= await fetch("http://172.16.101.146:5999/pantalon");
-    const data = await url.json();
-    return data;
-}
-
-export const getAbrigo = async() =>{
-    const url= await fetch("http://172.16.101.146:5999/abrigos");
-    const data = await url.json();
-    return data;
-}
-
-export const getCamiseta = async() =>{
-    const url= await fetch("http://172.16.101.146:5999/camiseta");
-    const data = await url.json();
-    return data;
-}
+import {getCamiseta,getAbrigo,getPantalones,getAll} from "./fetch.js"
+import {createPants,createShirt,createJacket} from "./createDOM.js"
+import Objects from "./object.js";
 
 
+await createPants();
+await createShirt();
+await createJacket();
 
-// export const createCardAbrigo()=>{
-    //     let 
-    // }
-    // const createPantalones = document.querySelector("boxes");
-    // createPantalones.addEventListener("click", async (e) => {
-export const createPantalones = async()=>{
-    let boxes=document.querySelector(".boxes"); ;
-    console.log(!boxes.innerHTML);
-    if (!boxes.innerHTML) {
-        let data = await getPantalones()
-        let plantilla = "";
-        console.log(data);
-        data.forEach(val => {
-            plantilla += `
-                <div class="box" id=${val.id}>
-                    <img src =${val.imagen}
-                    <div class="info">
-                        <p>${val.nombre}</p>
-                        <b>${val.precio} </b>
-                        <button class="h_button">Agregar</button>
-                    </div>
-                </div>
-            `;})
-        boxes.innerHTML = plantilla;
-    }
-}
-await createPantalones();
-// })
+const btn = document.querySelectorAll('button');
+btn.addEventListener("click", async function () {
+    no_id=btn.getAttribute('id');
+    data = await getPantalones();
+    data2= await getAbrigo();
+    data3= await getCamiseta();
+    datall={data,data2,data3}
+    for (const i of data){
+        for (const j of (data.i)){
+            if (j.id===no_id){
+                save=data.i.j;
+                console.log(save);
+                break;
+            }
+        }
+    }; 
+
+    // document.getElementById(no_id)
+    // for (const val of datall)
+    // if id_boton=id
+    // new Objects(id,imagen,nombre,precio)
+
+});
